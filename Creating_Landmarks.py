@@ -3,11 +3,9 @@ import pickle
 import mediapipe as mp
 import cv2
 
-# Initialize MediaPipe Hands model
+# MediaPipe Hands model
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils  # Corrected drawing_utils
-
-# Configure the Hands model
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.5)
 
 # Path to the dataset folder
@@ -54,7 +52,7 @@ for dir_ in os.listdir(data_dir):
                     data_aux.append((x - min_x) / (max_x - min_x))  # Normalizing x coordinates
                     data_aux.append((y - min_y) / (max_y - min_y))  # Normalizing y coordinates
 
-                # Optionally draw landmarks
+                # Draw landmarks
                 mp_drawing.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
             data.append(data_aux)
